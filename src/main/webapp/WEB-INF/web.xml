@@ -18,10 +18,26 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+
+	<!-- spring security filter config -->
+	<!--  http://lng1982.tistory.com/138 -->
+<!-- 	<filter> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
+<!-- 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
+
 	<!-- spring dispatcher -->
 	<servlet>
 		<servlet-name>springDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>spring.profiles.active</param-name>
+			<param-value>dev</param-value>
+		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value> /WEB-INF/config/springmvc/dispatcher-servlet.xml</param-value>

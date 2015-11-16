@@ -13,37 +13,47 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
-<!-- 	<context:annotation-config/> -->
-    <context:component-scan base-package="com.warmcompany.udong" />
-<!--     <context:spring-configured/> -->
+	<!-- <context:annotation-config/> -->
+	<context:component-scan base-package="com.warmcompany.udong" />
+	<!-- <context:spring-configured/> -->
 
 	<!-- Configures support for @Controllers -->
 	<mvc:annotation-driven>
-	
 	</mvc:annotation-driven>
-	
-	<mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean id="loggerInterceptor" class="com.warmcompany.common.logger.LoggerInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean id="loggerInterceptor" class="com.warmcompany.common.logger.LoggerInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
-	<bean id="contentManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-            <property name="favorPathExtension" value="true"/>
-            <property name="ignoreAcceptHeader" value="true" />
-            <property name="defaultContentType" value="text/html" />
-            <property name="useJaf" value="false"/>
-            <property name="mediaTypes">
-                <map>
-                    <entry key="html" value="text/html" />
-                    <entry key="txt" value="text/plain" />
-                    <entry key="json" value="application/json" />
-                    <entry key="xml" value="application/xml" />
-                </map>
-            </property>
+	<mvc:view-controller path="/main/view" view-name="adminIndex"/>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource ">
+        <property name="basenames">
+            <list>
+                <value>classpath:config/properties/messages-properties</value>
+            </list>
+        </property>
+        <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
+    
+	<bean id="contentManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="ignoreAcceptHeader" value="true" />
+		<property name="defaultContentType" value="text/html" />
+		<property name="useJaf" value="false" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="html" value="text/html" />
+				<entry key="txt" value="text/plain" />
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+			</map>
+		</property>
+	</bean>
 
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -52,10 +62,23 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 		<property name="cache" value="false" />
-		
-	</bean>
-	<bean id="encoder" 
-	class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-	<import resource="classpath:config/spring/context-*.xml" />
 
+	</bean>
+	<import resource="classpath:config/spring/context-*.xml" />
+	<beans profile="dev">
+	
+		<util:properties id="config"
+			location="classpath:/config/properties/dev.xml">
+				<prop key="testProperties">TestProp</prop>
+			</util:properties>
+	</beans>
+	<beans profile="qa">
+		<util:properties id="config"
+			location="classpath:/config/properties/dev.xml" />
+	</beans>
+
+	<beans profile="prod">
+		<util:properties id="config"
+			location="classpath:/config/properties/dev.xml" />
+	</beans>
 </beans>
