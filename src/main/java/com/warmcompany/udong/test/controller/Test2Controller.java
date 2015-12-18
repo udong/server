@@ -31,6 +31,6 @@ public class Test2Controller {
 
 		System.out.println("msg.test1: " + messageSource.getMessage("msg.test1", null, Locale.getDefault()));
 		System.out.println(value);
-		return new ModelAndView("adminIndex");
+		return new ModelAndView("jdbctest");
 	}
 }

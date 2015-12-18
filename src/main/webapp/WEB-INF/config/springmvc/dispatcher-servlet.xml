@@ -54,6 +54,8 @@
 			</map>
 		</property>
 	</bean>
+	
+	<tx:annotation-driven />
 
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -66,7 +68,6 @@
 	</bean>
 	<import resource="classpath:config/spring/context-*.xml" />
 	<beans profile="dev">
-	
 		<util:properties id="config"
 			location="classpath:/config/properties/dev.xml">
 				<prop key="testProperties">TestProp</prop>
@@ -81,4 +82,6 @@
 		<util:properties id="config"
 			location="classpath:/config/properties/dev.xml" />
 	</beans>
+	
+	
 </beans>

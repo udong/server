@@ -10,8 +10,11 @@
 		<property name="packagesToScan" value="com.warmcompany.udong.**.model" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">${config['hibernate.hbm2ddl.auto']}</prop>
-				<prop key="hibernate.dialect">${config['hibernate.dialect']}</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+<!-- 				<prop key="hibernate.hbm2ddl.auto">${config['hibernate.hbm2ddl.auto']}</prop> -->
+<!-- 				<prop key="hibernate.dialect">${config['hibernate.dialect']}</prop> -->
 			</props>
 		</property>
 	</bean>

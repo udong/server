@@ -5,11 +5,10 @@
  */
 package com.warmcompany.udong.test.controller;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.warmcompany.udong.common.CommonDAO;
 import com.warmcompany.udong.test.model.Member;
 import com.warmcompany.udong.test.service.MemberValidator;
 
@@ -30,19 +30,18 @@ public class TestController {
 	String testValue;
 	
 	@Autowired
-	SessionFactory factory;
+	CommonDAO commonDAO;
 	
 	@RequestMapping(value = "/method1")
+	@Transactional
 	public ModelAndView testMethod1(Model model)	{
 		String s1 = "qwe";
-
-		System.out.println("상입 작업");
-		Member member = new Member("test", "test2");
+		System.out.println("Asd");
 		
-		Session session = factory.getCurrentSession();
-		session.beginTransaction();
-		session.save(member);
-		session.getTransaction().commit();
+		Member member = new Member("test", "test2");
+		member.setEmail("Asd");
+		
+		commonDAO.save(member);
 		
 		System.out.println("Test " + testValue);
 		

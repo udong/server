@@ -8,19 +8,73 @@ package com.warmcompany.udong.club.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.warmcompany.udong.club.model.Club;
 import com.warmcompany.udong.club.model.ClubInfo;
+import com.warmcompany.udong.club.service.ClubService;
 
 @Controller
-@RequestMapping(value="/club")
+@RequestMapping(value="/clubs")
 public class ClubController {
+	
+	@Autowired
+	ClubService clubService;
 
+	
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> createClub(@RequestBody Club club)	{
+		Map<String, Object> resultMap = Maps.newHashMap();
+		
+		int createdClubId = clubService.createClub(club);
+		resultMap.put("resultCode", 200);
+		resultMap.put("clubId", createdClubId);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/{id}")
+	@ResponseBody
+	public Map<String, Object> getClubList(@PathVariable(value="id")int id)	{
+		Map<String, Object> resultMap = Maps.newHashMap();
+		return resultMap;
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")
+	@ResponseBody
+	public Map<String, Object> removeClub(@PathVariable(value="id")int id)	{
+		Map<String, Object> resultMap = Maps.newHashMap();
+		return resultMap;
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/{id}")
+	@ResponseBody
+	public Map<String, Object> updateClub(@PathVariable(value="id")int id, @ModelAttribute Club param)	{
+		Map<String, Object> resultMap = Maps.newHashMap();
+		return resultMap;
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getClubList()	{
+		Map<String, Object> resultMap = Maps.newHashMap();
+		return resultMap;
+	}
+	
+	
+	
+	
+	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<Object, Object> list()	{
