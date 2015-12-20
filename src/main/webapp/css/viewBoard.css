@@ -1,0 +1,36 @@
+body{
+	padding-top: 50px;
+}
+
+.thumbnail img {
+    width: 200px;
+    height: 200px;
+}
+
+.container {
+	margin: auto;
+}
+
+.leftnav {
+	padding-top: 30px;
+	float: left;
+	width : 300px;
+	background-color: #ddff;
+}
+
+
+.content {
+	float : left;
+	overflow: hidden;
+}
+.table-responsive{
+	
+}
+
+.rightnav {
+	float: right;
+	width : 260px;
+}
+
+
+

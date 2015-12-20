@@ -33,4 +33,10 @@ public class Test2Controller {
 		System.out.println(value);
 		return new ModelAndView("adminIndex");
 	}
+	
+	@RequestMapping(value ="/clubList")
+	public ModelAndView testMethod2(Model model)
+	{
+		return new ModelAndView("myClubList");
+	}
 }

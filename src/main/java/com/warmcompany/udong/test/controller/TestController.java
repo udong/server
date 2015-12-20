@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.warmcompany.udong.club.model.ClubInfo;
 import com.warmcompany.udong.test.model.Member;
 import com.warmcompany.udong.test.service.MemberValidator;
 
@@ -51,7 +52,6 @@ public class TestController {
 		return new ModelAndView("adminIndex");
 	}
 	
-	
 	/**
 	 * spring Form error와 연동
 	 */
@@ -71,11 +71,29 @@ public class TestController {
 		
 		return new ModelAndView("adminIndex");
 	}
-	
+
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public String hadlerException(Exception ex)	{
 		return "EXCEPTION";
 	}
 
+	@RequestMapping(value="/Board")
+	public ModelAndView viewBoard(Model model)
+	{
+		return new ModelAndView("viewBoard");
+	}
+	
+	@RequestMapping(value="/login")
+	public ModelAndView loginModule(Model model)
+	{
+		return new ModelAndView("login");
+	}
+	
+	@RequestMapping(value="/registration")
+	public ModelAndView registModule(Model model)
+	{
+		return new ModelAndView("registration");
+	}
+	
 }
