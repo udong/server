@@ -19,6 +19,8 @@ public class ClubServiceImpl implements ClubService	{
 	@Autowired
 	CommonDAO commonDAO;
 	
+	private final Class clubClass = Club.class; 
+	
 	@Override
 	public int createClub(Club club) {
 		commonDAO.save(club);
@@ -27,25 +29,25 @@ public class ClubServiceImpl implements ClubService	{
 
 	@Override
 	public int removeClub(Club club) {
-		// TODO Auto-generated method stub
+		commonDAO.delete(club);
 		return 0;
 	}
 
 	@Override
 	public int updateClub(Club club) {
-		// TODO Auto-generated method stub
+		commonDAO.update(club);
 		return 0;
 	}
 
 	@Override
 	public Club getClub(int clubId) {
-		// TODO Auto-generated method stub
-		return null;
+		Club club = commonDAO.get(clubClass, clubId);
+		return club; 
 	}
 
 	@Override
 	public List<Club> getClubList(Club club) {
-		// TODO Auto-generated method stub
+		//List<Club> clubs = commonDAO.getListWithQuery(queryString, params);
 		return null;
 	}
 

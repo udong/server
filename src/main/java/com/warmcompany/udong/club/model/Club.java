@@ -34,6 +34,7 @@ public class Club {
 	private double averageAge;
 	private Date modDate;
 	private Date regDate;
+	
 	public int getId() {
 		return id;
 	}

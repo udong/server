@@ -22,6 +22,8 @@ import com.google.common.collect.Maps;
 import com.warmcompany.udong.club.model.Club;
 import com.warmcompany.udong.club.model.ClubInfo;
 import com.warmcompany.udong.club.service.ClubService;
+import com.warmcompany.udong.common.CommonCode;
+import com.warmcompany.udong.common.ResultMapGenerator;
 
 @Controller
 @RequestMapping(value="/clubs")
@@ -37,8 +39,8 @@ public class ClubController {
 		Map<String, Object> resultMap = Maps.newHashMap();
 		
 		int createdClubId = clubService.createClub(club);
-		resultMap.put("resultCode", 200);
 		resultMap.put("clubId", createdClubId);
+		ResultMapGenerator.putSuccessCode(resultMap);
 		
 		return resultMap;
 	}
@@ -71,7 +73,19 @@ public class ClubController {
 		return resultMap;
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/{id}/user")
+	@ResponseBody
+	public Map<String, Object> joinClub(@PathVariable(value="id")int id, @ModelAttribute Club param)	{
+		Map<String, Object> resultMap = Maps.newHashMap();
+		return resultMap;
+	}
 	
+	@RequestMapping(method=RequestMethod.DELETE, value="/{id}/user")
+	@ResponseBody
+	public Map<String, Object> leaveClub(@PathVariable(value="id")int id, @ModelAttribute Club param)	{
+		Map<String, Object> resultMap = Maps.newHashMap();
+		return resultMap;
+	}
 	
 	
 	
