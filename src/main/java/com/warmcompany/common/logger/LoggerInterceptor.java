@@ -5,8 +5,6 @@
  */
 package com.warmcompany.common.logger;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;

@@ -1,8 +1,11 @@
 package com.warmcompany.udong.category.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * 2015. 12. 18.
@@ -17,6 +20,10 @@ public class Category {
 	private int id;
 	private String title;
 	private int parentId;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_id")
+	private Category parent;
 	
 	public int getId() {
 		return id;
@@ -35,6 +42,12 @@ public class Category {
 	}
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
+	}
+	public Category getParent() {
+		return parent;
+	}
+	public void setParent(Category parent) {
+		this.parent = parent;
 	}
 	
 	

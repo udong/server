@@ -34,10 +34,14 @@ public class BoardController {
 	public Map<String, Object> createBoard(@RequestBody Board param)	{
 		Map<String, Object> resultMap = Maps.newHashMap();
 		
-		boardService.createBoard(param);
+		int createdId = boardService.createBoard(param);
 		
-		resultMap.put("resultCode", CommonCode.SUCCESS_CODE);
-		resultMap.put("board", param);
+		if(createdId < 0)	{
+			ResultMapGenerator.putErrorCode(resultMap);
+		} else	{
+			ResultMapGenerator.putSuccessCode(resultMap);
+			resultMap.put("board", param);
+		}
 		
 		return resultMap;
 	}
@@ -68,7 +72,7 @@ public class BoardController {
 		if(board == null)	{
 			ResultMapGenerator.putErrorCode(resultMap);
 		} else	{
-			resultMap.put("resultCode", CommonCode.SUCCESS_CODE);
+			ResultMapGenerator.putSuccessCode(resultMap);
 			resultMap.put("board", board);
 		}
 		return resultMap;
@@ -85,7 +89,7 @@ public class BoardController {
 		if(board == null)	{
 			ResultMapGenerator.putErrorCode(resultMap);
 		} else	{
-			resultMap.put("resultCode", CommonCode.SUCCESS_CODE);
+			ResultMapGenerator.putSuccessCode(resultMap);
 			resultMap.put("board", board);
 		}
 		return resultMap;
@@ -101,7 +105,7 @@ public class BoardController {
 		if(deletedRow < 0)	{
 			ResultMapGenerator.putErrorCode(resultMap);
 		} else	{
-			resultMap.put("resultCode", CommonCode.SUCCESS_CODE);
+			ResultMapGenerator.putSuccessCode(resultMap);
 			resultMap.put("deletedRow", deletedRow);
 		}
 		return resultMap;

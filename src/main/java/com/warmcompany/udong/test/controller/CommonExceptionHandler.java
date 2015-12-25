@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-@ControllerAdvice("com.warmcompany.udong")
+@ControllerAdvice("com.warmcompany.udong.test")
 public class CommonExceptionHandler {
 	
 	/**

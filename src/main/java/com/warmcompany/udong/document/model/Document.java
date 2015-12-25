@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.warmcompany.udong.board.model.Board;
 
 /**
@@ -20,6 +22,7 @@ import com.warmcompany.udong.board.model.Board;
  * Document
  */
 @Entity
+@Table(name = "Document")
 public class Document {
 	
 	@Id
@@ -105,9 +108,11 @@ public class Document {
 	public void setType(int type) {
 		this.type = type;
 	}
-
-	
-	public Board getBoard()	{
+	public Board getBoard() {
 		return board;
 	}
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
 }

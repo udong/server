@@ -65,5 +65,11 @@ public class Board {
 	public void setSubscript(String subscript) {
 		this.subscript = subscript;
 	}
+	public List<Document> getDocuments() {
+		return documents;
+	}
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
 	
 }
