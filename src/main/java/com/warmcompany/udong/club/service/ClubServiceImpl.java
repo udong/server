@@ -28,7 +28,9 @@ public class ClubServiceImpl implements ClubService	{
 	}
 
 	@Override
-	public int removeClub(Club club) {
+	public int deleteClub(int clubId) {
+		Club club = new Club();
+		club.setId(clubId);
 		commonDAO.delete(club);
 		return 0;
 	}

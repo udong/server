@@ -75,6 +75,7 @@ public class CategoryController {
 	public Map<String, Object> updateCategory(@PathVariable(value="/{id}")int id, Category param)	{
 		Map<String, Object> resultMap = Maps.newHashMap();
 		categoryService.updateCategory(param);
+		ResultMapGenerator.putSuccessCode(resultMap);
 		return resultMap;
 	}
 }

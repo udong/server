@@ -11,7 +11,7 @@ import com.warmcompany.udong.club.model.Club;
  */
 public interface ClubService {
 	public int createClub(Club club);
-	public int removeClub(Club club);
+	public int deleteClub(int clubId);
 	public int updateClub(Club club);
 	public Club getClub(int clubId);
 	public List<Club> getClubList(Club club);

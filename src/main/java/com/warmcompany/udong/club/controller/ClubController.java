@@ -39,16 +39,28 @@ public class ClubController {
 		Map<String, Object> resultMap = Maps.newHashMap();
 		
 		int createdClubId = clubService.createClub(club);
-		resultMap.put("clubId", createdClubId);
-		ResultMapGenerator.putSuccessCode(resultMap);
+		if(createdClubId < 0)	{
+			ResultMapGenerator.putErrorCode(resultMap);
+		} else	{
+			ResultMapGenerator.putSuccessCode(resultMap);
+			resultMap.put("clubId", createdClubId);
+		}
 		
 		return resultMap;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
 	@ResponseBody
-	public Map<String, Object> getClubList(@PathVariable(value="id")int id)	{
+	public Map<String, Object> getClub(@PathVariable(value="id")int id)	{
 		Map<String, Object> resultMap = Maps.newHashMap();
+		
+		Club club = clubService.getClub(id);
+		if(club == null)	{
+			ResultMapGenerator.putErrorCode(resultMap);
+		} else	{
+			ResultMapGenerator.putSuccessCode(resultMap);
+			resultMap.put("club", club);
+		}
 		return resultMap;
 	}
 	
@@ -56,6 +68,13 @@ public class ClubController {
 	@ResponseBody
 	public Map<String, Object> removeClub(@PathVariable(value="id")int id)	{
 		Map<String, Object> resultMap = Maps.newHashMap();
+		int deletedRow = clubService.deleteClub(id);
+		if(deletedRow < 0)	{
+			ResultMapGenerator.putErrorCode(resultMap);
+		} else	{
+			ResultMapGenerator.putSuccessCode(resultMap);
+			resultMap.put("deletedRow", deletedRow);
+		}
 		return resultMap;
 	}
 	
@@ -68,7 +87,7 @@ public class ClubController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getClubList()	{
+	public Map<String, Object> getClubList(Club param)	{
 		Map<String, Object> resultMap = Maps.newHashMap();
 		return resultMap;
 	}
